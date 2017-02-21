@@ -84,8 +84,8 @@ app.post('/articles', function(request, response) {
 
   function queryTwo() {
     client.query(
-      // TODO: What is the purpose of the $1 in the following line of code?
-      // Put your response here...
+      // DONE: What is the purpose of the $1 in the following line of code?
+      // ANSWER : The 1$ acts as a variable that is populated by information from the HTTP request in the following array.
       `SELECT author_id FROM authors WHERE author=$1`, // DONE: Write a SQL query to retrieve the author_id from the authors table for the new article
       [request.body.author], // DONE: Add the author name as data for the SQL query
       function(err, result) {
