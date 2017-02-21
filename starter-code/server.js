@@ -1,6 +1,6 @@
 'use strict';
 
-// TODO: Do not forget to go into your SQL shell and DROP TABLE the existing articles/authors tables. Be sure to start clean.
+// DONE: Do not forget to go into your SQL shell and DROP TABLE the existing articles/authors tables. Be sure to start clean.
 const pg = require('pg');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -9,7 +9,7 @@ const app = express();
 // TODO: Don't forget to set your own conString if required by your system
 const conString = 'postgres://localhost:5432';
 // TODO: Using a sentence or two, describe what is happening in Line 12.
-// Put your response here...
+// Creating const variable called client and instantiate pg.Client that takes conString as an argument (the route to our server) then call the connect method on client to start the communication.
 const client = new pg.Client(conString);
 client.connect();
 
