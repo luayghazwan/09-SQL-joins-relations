@@ -6,9 +6,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const app = express();
-// TODO: Don't forget to set your own conString if required by your system
+// DONE: Don't forget to set your own conString if required by your system
 const conString = 'postgres://localhost:5432';
-// TODO: Using a sentence or two, describe what is happening in Line 12.
+// DONE: Using a sentence or two, describe what is happening in Line 12.
 // Creating const variable called client and instantiate pg.Client that takes conString as an argument (the route to our server) then call the connect method on client to start the communication.
 const client = new pg.Client(conString);
 client.connect();
@@ -28,11 +28,11 @@ app.get('/new', function(request, response) {
 
 // Following are the routes for making API calls to enact CRUD Operations on our database
 
-// TODO: Some of the following questions will refer back to the image called 'full-stack-diagram' that has been added to the lab directory. In that image you will see that the various parts of the application's activity have been numbered 1-5. When prompted in the following questions, identify which number best matches the location of a given process. For instance, the following line of code, where the server is handling a request from the view layer, would match up with #2.
+// DONE: Some of the following questions will refer back to the image called 'full-stack-diagram' that has been added to the lab directory. In that image you will see that the various parts of the application's activity have been numbered 1-5. When prompted in the following questions, identify which number best matches the location of a given process. For instance, the following line of code, where the server is handling a request from the view layer, would match up with #2.
 app.get('/articles', function(request, response) {
   // REVIEW: We now have two queries which create separate tables in our DB, and reference the authors in our articles.
-  // TODO: What number in the full-stack diagram best matches what is happening in lines 35-42?
-  // Put your response here...
+  // DONE: What number in the full-stack diagram best matches what is happening in lines 35-42?
+  // ANSWER : #3
   client.query(`
     CREATE TABLE IF NOT EXISTS
     authors (
@@ -51,12 +51,12 @@ app.get('/articles', function(request, response) {
       "publishedOn" DATE,
       body TEXT NOT NULL
     );`
-  ) // TODO: Referring to lines 45-52, answer the following questions:
+  ) // DONE: Referring to lines 45-52, answer the following questions:
     // What is a primary key?
-    // Put your response here...
+    // ANSWER : It's the unique identifier for a row in a table
     // +++++++++++++++++++++
     // What does VARCHAR mean?
-    // Put your response here...
+    // ANSWER : Ict specifies a string variable of a certain length (255), the latter part to VARCHAR defines the max length to that string to VARCHAR.
     // +++++++++++++++++++++
   // REVIEW: This query will join the data together from our tables and send it back to the client.
   client.query(`
@@ -70,8 +70,8 @@ app.get('/articles', function(request, response) {
   );
 });
 
-// TODO: How is a 'post' route different than a 'get' route?
-// Put your answer here...
+// DONE: How is a 'post' route different than a 'get' route?
+// Post route is used to insert our query to the server while get will SELECT or read from it
 app.post('/articles', function(request, response) {
   client.query(
     'INSERT INTO authors(author, "authorUrl") VALUES($1, $2) ON CONFLICT DO NOTHING', // DONE: Write a SQL query to insert a new author, ON CONFLICT DO NOTHING
@@ -183,4 +183,4 @@ app.listen(PORT, function() {
   console.log(`Server started on port ${PORT}!`);
 });
 
-// TODO: Make your own drawing of the full-stack diagram on a blank piece of paper (there is a stack of paper on the table next to the door into our classroom) and submit to the TA who grades your lab assignments. This is for just a little extra reinforcement of how everything works.
+// DONE: Make your own drawing of the full-stack diagram on a blank piece of paper (there is a stack of paper on the table next to the door into our classroom) and submit to the TA who grades your lab assignments. This is for just a little extra reinforcement of how everything works.
