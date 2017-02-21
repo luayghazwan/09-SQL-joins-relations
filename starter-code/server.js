@@ -96,7 +96,8 @@ app.post('/articles', function(request, response) {
   }
 
   function queryThree(author_id) {
-      // TODO: What number in the full-stack diagram best matches what is happening in line 100?
+      // DONE: What number in the full-stack diagram best matches what is happening in line 100?
+      //ANSWER : #3
     client.query(
       `INSERT INTO
       articles(author_id, title, category, "publishedOn", body)
