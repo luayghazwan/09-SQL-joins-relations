@@ -94,7 +94,6 @@ app.post('/articles', function(request, response) {
       }
     )
   }
-
   function queryThree(author_id) {
       // DONE: What number in the full-stack diagram best matches what is happening in line 100?
       //ANSWER : #3
@@ -111,7 +110,8 @@ app.post('/articles', function(request, response) {
       ], // DONE: Add the data from our new article, including the author_id, as data for the SQL query.
       function(err) {
         if (err) console.error(err);
-        // TODO: What number in the full-stack diagram best matches what is happening in line 114?
+        //DONE: What number in the full-stack diagram best matches what is happening in line 115?
+        // ANSWER : # 5
         response.send('insert complete');
       }
     );
@@ -131,7 +131,8 @@ app.put('/articles/:id', function(request, response) {
 
   function queryTwo(author_id) {
     client.query(
-      // TODO: In a sentence or two, describe how a SQL 'UPDATE' is different from an 'INSERT', and identify which REST verbs and which CRUD components align with them.
+      // DONE: In a sentence or two, describe how a SQL 'UPDATE' is different from an 'INSERT', and identify which REST verbs and which CRUD components align with them.
+      // SQL UPDATE permits a query that changes the value of a field in a specific record. It corresponds with CRUD UPDATE. SQL INSERT adds a new record to a table, and corresponds with CRUD CREATE.
       `UPDATE authors
       SET author=$1, "authorUrl"=$2
       WHERE author_id=$3;`, // DONE: Write a SQL query to update an existing author record
@@ -159,17 +160,19 @@ app.put('/articles/:id', function(request, response) {
     );
   }
 });
-
-  // TODO: What number in the full-stack diagram best matches what is happening in line 163?
+  // DONE: What number in the full-stack diagram best matches what is happening in line 163?
+  //ANSWER :#2
 app.delete('/articles/:id', function(request, response) {
-    // TODO: What number in the full-stack diagram best matches what is happening in lines 165?
+    // DONE: What number in the full-stack diagram best matches what is happening in lines 165?
+    // ANSWER #3
   client.query(
     `DELETE FROM articles WHERE article_id=$1;`,
-    // TODO: What does the value in 'request.params.id' come from? If unsure, look in the Express docs.
-    // Put your response here...
+    // DONE: What does the value in 'request.params.id' come from? If unsure, look in the Express docs.
+    // request is from the callback function's parameters and represents the HTTP request here
     [request.params.id]
   );
-  // TODO: What number in the full-stack diagram best matches what is happening in line 171?
+  // DONE: What number in the full-stack diagram best matches what is happening in line 171?
+  // ANSWER : 5
   response.send('Delete complete');
 });
 
